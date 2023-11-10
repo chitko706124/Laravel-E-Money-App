@@ -1,0 +1,307 @@
+/*
+theme = #5842E3;
+background = #EDEDF5;
+borderRadius = 10px;
+box-shadow : 0 1px 3px 0 rgba(0,0,0,0.09)
+*/
+
+body {
+    background: #EDEDF5;
+    font-size: 15px !important;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: #5842E3;
+}
+
+
+.btn-violet {
+    background: #5842E3 !important;
+    color: #ffffff !important;
+    /* background-color: #5842E3; */
+}
+
+.btn {
+    padding: 10px 25px !important;
+}
+
+.card {
+    /* box-shadow : 0 1px 3px 0 rgba(0,0,0,0.09) !important; */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    border: none !important;
+    border-radius: 10px !important;
+}
+
+.swal2-popup {
+    border-radius: 10px !important;
+    width: 30em !important;
+}
+
+
+
+.swal2-styled.swal2-confirm {
+    background: #5842E3 !important;
+}
+
+
+
+.swal2-styled {
+    border-radius: 10px !important;
+    padding: 10px 25px !important;
+
+}
+
+
+
+/* ------------------ Auth Form -------------------- */
+.auth-form {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    border: none !important;
+    border-radius: 10px !important;
+}
+
+.auth-form a {
+    color: #333;
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    color: #5842E3;
+}
+
+/* -------------------- Header Menu -------------------- */
+.header-menu {
+    position: fixed;
+    background: #ffff;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    z-index: 999;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.09) !important;
+
+}
+
+.unread_noti_badge {
+    top: -7px;
+    border-radius: 100%;
+    right: -13px;
+}
+
+.header-title {
+    font-weight: 900;
+}
+
+.header-menu a {
+    text-decoration: none;
+    color: #333;
+}
+
+.header-menu i {
+    /* margin-top: 12px; */
+    font-size: 20px;
+}
+
+.header-menu h3 {
+    font-size: 22px;
+    margin-bottom: 0 !important;
+}
+
+.header-menu a:hover i {
+    color: #5842E3;
+    transition: .3s;
+}
+
+.header-menu a:hover p {
+    color: #5842E3;
+    transition: .3s;
+}
+
+@media (max-width: 320px) {
+    .header-title {
+        font-size: 16px !important;
+    }
+
+}
+
+/* -------------------- Content ------------------------ */
+.content {
+    margin-top: 75px !important;
+    margin-bottom: 100px !important;
+}
+
+/* -------------------- Bottom Menu -------------------- */
+.bottom-menu {
+    position: fixed;
+    background: #ffff;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.bottom-menu a {
+    text-decoration: none;
+    color: #333;
+}
+
+.bottom-menu i {
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+.bottom-menu p {
+    margin-bottom: 12px;
+}
+
+.bottom-menu a:hover i {
+    color: #5842E3;
+    transition: .3s;
+}
+
+.bottom-menu a:hover p {
+    color: #5842E3;
+    transition: .3s;
+}
+
+/* --------------------- Home ----------------------------- */
+.function-box img {
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+}
+
+@media (min-width: 768px) {
+    .function-box img {
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+    }
+
+}
+
+/* --------------------- Transfer ------------------------- */
+/* .input-group .btn:hover {
+    background: #5842E3;
+    color: white;
+    transition: 3s;
+} */
+
+.input-group .btn {
+    background: #F8F9FA;
+    padding: 6px 20px !important;
+    transition: background 0.5s;
+}
+
+.input-group .btn:hover {
+    background: #5842E3;
+    color: white;
+}
+
+/* ---------------------Scan Tab ------------------------- */
+.scan-tab {
+    width: 60px;
+    height: 60px;
+    background: #EDEDF5;
+    border-radius: 100%;
+    position: fixed;
+    bottom: 38px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.inside {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 100%;
+    animation: glow 5s infinite, borderRun 60s linear infinite;
+    /* border: 2px solid #5842E3; */
+    box-sizing: border-box;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 2px #5842E3;
+    }
+
+    50% {
+        box-shadow: 0 0 15px #5842E3;
+    }
+
+    100% {
+        box-shadow: 0 0 2px #5842E3;
+    }
+}
+
+@keyframes borderRun {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* --------------------- Wallet ------------------------- */
+.wallet {}
+
+.wallet .my-card {
+    background: #5842E3;
+    color: white;
+}
+
+.wallet .my-card span {
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #EDEDF5;
+    font-size: 14px;
+}
+
+.wallet .my-card h4 {
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.wallet .my-card h5 {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.wallet .my-card p {
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+
+/* --------------------- Account ------------------------ */
+.profile img {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+@media (max-width: 425px) {
+    .profile img {
+        width: 80px;
+        height: 80px;
+    }
+
+}
+
+.account .card {
+    border-radius: 10px !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.09) !important;
+}

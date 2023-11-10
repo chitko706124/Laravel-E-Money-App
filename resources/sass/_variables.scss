@@ -1,0 +1,88 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+$headings-margin-bottom: 0;
+
+
+.custom-link {
+    height: 50px;
+}
+
+.fBold {
+    font-weight: 700;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+// .d-none .flex-sm-fill .d-sm-flex{
+// display: none !important;
+// }
+
+.infinite-scroll .jscroll-inner nav{
+    display: none !important;
+}
+
+// .d-sm-flex {
+//     display: none !important;
+// }
+
+// icon style -------------------------------------------
+
+.bi-list {
+    font-size: 32px;
+}
+
+.bi-house-door,
+.bi-wallet-fill,
+.bi-person-lock,
+.bi-person-add,
+.bi-pc-display-horizontal,
+.bi-people {
+    font-size: 20px;
+}
+
+
+.bi-qr-code,
+.bi-qr-code-scan {
+    font-size: 30px;
+}
+
+
+// icon style end xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+
+// data table style ------------------------------------
+
+div.dataTables_wrapper div.dataTables_length label {
+    font-weight: normal !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+}
+
+.dataTables_wrapper {
+    width: auto !important;
+    // width: 100vw;
+}
+
+table.dataTable {
+    width: 100% !important;
+}
+
+.action-icon a {
+    padding: 8px;
+    font-size: 16px;
+}
+
+.action-icon a:hover {
+    background-color: #f5f5f5;
+    border-radius: 10%;
+}
+
+// data table style end xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

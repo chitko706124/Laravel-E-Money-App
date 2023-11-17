@@ -56,7 +56,7 @@
             const qrScaner = new QrScanner(videoElem, function(result) {
                 if (result) {
                     qrScaner.stop();
-                    console.log(result);
+                    // console.log(result);
                     modal.hide();
 
                     var phone = result;

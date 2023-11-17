@@ -40,6 +40,11 @@ Route::middleware('auth')
         Route::get('/update-password', 'updatePassword')->name('update-password');
         Route::post('/update-password', 'updatePasswordStore')->name('update-password.store');
 
+        Route::get('/friend', 'friend')->name('friend');
+        Route::get('/friend/add', 'friendAdd')->name('friend.add');
+        Route::get('/friend/add/store', 'friendAddStore')->name('friend.addStore');
+
+
         Route::get('/wallet', 'wallet')->name('wallet');
 
         Route::get('/transfer', 'transfer')->name('transfer');

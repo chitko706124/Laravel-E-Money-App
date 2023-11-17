@@ -17,23 +17,28 @@ use App\Http\Controllers\Backend\AdminUserController;
 |
 */
 
-
-
-
 // Route::get('/admin', function () {
 //     // dd(session('admin_user'));
 //     return "hello admin";
 // })->middleware(CheckAdmin::class);
 
-Route::prefix('admin')->middleware('auth:admin_users')->group(function () {
+Route::prefix('admin')
+    ->middleware('auth:admin_users')
+    ->group(function () {
+        Route::get('/', [PageController::class, 'home'])->name('admin.dashboard');
 
-    Route::get('/', [PageController::class, 'home'])->name('admin.dashboard');
-    
-    Route::resource('admin-user', AdminUserController::class);
-    Route::resource('user', UserController::class);
+        Route::resource('admin-user', AdminUserController::class);
+        Route::resource('user', UserController::class);
 
-    Route::get('wallet', [WalletController::class, 'index'])->name('wallet.index');
+        Route::get('wallet', [WalletController::class, 'index'])->name('wallet.index');
 
+        Route::get('wallet/add/amount', [WalletController::class, 'addAmount'])->name('wallet.addAmount');
+        Route::post('wallet/add/amountStore', [WalletController::class, 'addAmountStore'])->name('waller.addAmountStore');
 
-    // Route::get('/admin-user/datatable/ssr', [AdminUserController::class, 'index'])->name('admin.datatable');
-});
+        Route::get('wallet/reduce/amount', [WalletController::class, 'reduceAmount'])->name('wallet.reduceAmount');
+        Route::post('wallet/reduce/amountStore', [WalletController::class, 'reduceAmountStore'])->name('waller.reduceAmountStore');
+
+        Route::get('wallet/reduce/amount', [WalletController::class, 'reduceAmount'])->name('wallet.reduceAmount');
+
+        // Route::get('/admin-user/datatable/ssr', [AdminUserController::class, 'index'])->name('admin.datatable');
+    });

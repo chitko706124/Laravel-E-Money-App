@@ -22,11 +22,12 @@ class TransferFormConfirmValidate extends FormRequest
      */
     public function rules(): array
     {
-        $authUser = Auth::guard('web')->user();
+        $authUser = auth()->user();
         $authUser_wallet = $authUser->wallet->amount;
         return [
             'phone' => "required|exists:users,phone|not_in:$authUser->phone",
             'amount' => "required|gte:500|lte:" . $authUser_wallet,
+            'hashData' => 'required'
         ];
     }
 
@@ -38,6 +39,7 @@ class TransferFormConfirmValidate extends FormRequest
             'amount.required' => 'Please fill the amount.',
             'amount.gte' => 'The amount must be at least 500 MMK.',
             'amount.lte' => "You Don't have enough money.",
+            'hashData.required' => 'The given data is invalid'
         ];
     }
 }

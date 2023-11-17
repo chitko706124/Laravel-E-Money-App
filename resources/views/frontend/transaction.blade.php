@@ -13,7 +13,7 @@
                     <div class=" col-6">
                         <div class="input-group ">
                             <label class="input-group-text">Date</label>
-                            <input type="text" class=" form-control date" value="{{ request()->date }}">
+                            <input type="text" class=" form-control date" value="{{ request()->date }}" placeholder="All">
                         </div>
                     </div>
                     <div class=" col-6">
@@ -26,12 +26,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class=" col-12 {{ request()->date !== null || request()->type ? '' : 'd-none' }}">
-                        <div class="d-grid mt-3">
-                            <button id="reset" class="btn btn-violet  ">Reset</button>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
@@ -97,83 +91,43 @@
 
             $('.date').daterangepicker({
                 "singleDatePicker": true,
-                "autoApply": true,
+                "autoApply": false,
+                'autoUpdateInput': false,
                 "maxDate": formattedDate,
+                "cancelClass": "btn-outline-primary",
+                "opens": "center",
                 "locale": {
                     "format": "YYYY-MM-DD",
+                    "cancelLabel": 'All'
                 },
             });
 
-            $('.date,.type').on('change', function() {
-                var urlParams = new URLSearchParams(window.location.search);
-                var dateParam = urlParams.get('date');
 
-                var date = $('.date').val() == formattedDate && dateParam == null ? '' : $('.date')
-                    .val();
+            $('.date').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD'));
+                var date = $('.date').val();
                 var type = $('.type').val();
-                var queryParams = {};
-
-                if (date !== null && date !== '') {
-                    queryParams.date = date;
-                }
-
-                if (type !== null && type !== '') {
-                    queryParams.type = type;
-                }
-
-                var queryString = $.param(queryParams);
-
-                history.pushState(null, '', '?' + queryString);
+                history.pushState(null, '', `?date=${date}&type=${type}`);
                 window.location.reload();
             });
 
-            $('#reset').click(function() {
-                $.ajax({
-                    url: "{{ route('transaction') }}",
-                    type: 'GET',
-                    success: function(data) {
-                        // This code will execute when the AJAX request is successful.
-                        // You can add any additional logic here if needed.
+            $('.date').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+                var date = $('.date').val();
+                var type = $('.type').val();
+                history.pushState(null, '', `?date=${date}&type=${type}`);
+                window.location.reload();
+            });
 
-                        // Reload the page
-                        history.pushState(null, '', "{{ route('transaction') }}");
+            $('.type').change(function() {
+                var date = $('.date').val();
+                var type = $('.type').val();
 
-                        window.location.reload();
-                    },
-                })
-            })
+                history.pushState(null, '', `?date=${date}&type=${type}`);
+                window.location.reload();
+            });
 
-            // $('.date').change(function() {
-            //     var date = $('.date').val();
-            //     var type = $('.type').val();
 
-            //     if (date === null || date === '') {
-            //         history.pushState(null, '', window.location.pathname);
-            //     } else if (type === null || type === '') {
-            //         history.pushState(null, '', `?date=${date}`);
-            //     } else {
-            //         history.pushState(null, '', `?date=${date}&type=${type}`);
-            //     }
-
-            //     window.location.reload();
-            // });
-
-            // $('.type').change(function() {
-            //     var date = $('.date').val();
-            //     var type = $('.type').val();
-
-            //     $('.date').change(function() {
-
-            //     })
-
-            //     if (type === null || type === '') {
-            //         history.pushState(null, '', window.location.pathname);
-            //     } else {
-            //         history.pushState(null, '', `?date=${date}&type=${type}`);
-            //     }
-
-            //     window.location.reload();
-            // });
         });
     </script>
 @endsection

@@ -9,7 +9,7 @@ function success($message, $data)
     ]);
 }
 
-function fail($message, $data)
+function fail($message, $data = null)
 {
     return response()->json([
         'result' => '0',

@@ -18,7 +18,15 @@
         </h3>
     </div>
 
+    <div class=" mb-3">
+        <a href="{{ route('wallet.addAmount') }}" class=" shadow btn btn-success fw-bold"><i
+                class="bi bi-plus-circle-fill me-1"></i>Add
+            Amount</a>
 
+        <a href="{{ route('wallet.reduceAmount') }}" class=" shadow btn btn-danger fw-bold"><i
+                class="bi bi-dash-circle-fill me-1"></i>Reduce
+            Amount</a>
+    </div>
 
     <div class=" content">
         <div class=" card border-0 shadow">

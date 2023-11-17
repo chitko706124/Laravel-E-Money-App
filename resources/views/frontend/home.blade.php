@@ -49,6 +49,13 @@
 
                         <hr>
 
+                        <a href="{{ route('friend') }}" class=" d-flex justify-content-between">
+                            <span><img src="{{ asset('img/add.png') }}" alt="">Friend</span>
+                            <span class=" me-3"><i class=" fas fa-angle-right"></i></span>
+                        </a>
+
+                        <hr>
+
                         <a href="#" class=" d-flex justify-content-between logout">
                             <span><img src="{{ asset('img/wallet.png') }}" alt="">Wallet</span>
                             <span class=" me-3"><i class=" fas fa-angle-right"></i></span>

@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
-use Termwind\Components\Raw;
 use App\Helpers\UUIDGenerate;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\TokenRepository;
+use Laravel\Passport\RefreshTokenRepository;
 
 class AuthController extends Controller
 {
@@ -76,9 +77,18 @@ class AuthController extends Controller
 
     public function logout()
     {
-        $user = auth()->user();
-        $user->token()->revoke();
+        $userTokenId = Auth::user()->token();
+        $userTokenId->revoke();
 
         return success('success', null);
+        // $tokenRepository = app(TokenRepository::class);
+        // $refreshTokenRepository = app(RefreshTokenRepository::class);
+
+        // // Revoke an access token...
+        // $tokenRepository->revokeAccessToken($userTokenId);
+
+        // // Revoke all of the token's refresh tokens...
+        // $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($userTokenId);
+        // return success('success', null);
     }
 }

@@ -26,6 +26,14 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(PageController::class)->middleware(['auth:api'])->group(function () {
     Route::get('/profile', 'profile');
 
+    Route::get('/transfer/confirm', 'transferConfirm');
+    Route::post('/transfer/complete', 'transferComplete');
+
     Route::get('/transactions', 'transactions');
     Route::get('/transaction/{trx_no}', 'transactionDetail');
+
+    Route::get('/notifications', 'notifications');
+    Route::get('/notification/{id}', 'notificationDetail');
+
+    Route::get('/to-account-verify', 'toAccountVerify');
 });

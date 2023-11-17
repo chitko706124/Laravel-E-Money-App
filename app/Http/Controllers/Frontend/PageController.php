@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdatePassword;
 use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\TransferFormConfirmValidate;
+use App\Models\Friend;
 use App\Notifications\GeneralNotification;
 
 class PageController extends Controller
@@ -30,6 +31,50 @@ class PageController extends Controller
     {
         $user = Auth::guard('web')->user();
         return view('frontend.profile', compact('user'));
+    }
+
+    public function friend()
+    {
+        $authUser = auth()->user();
+        $friends = Friend::orderBy('name')
+            ->where('user_id', $authUser->id)
+            ->paginate(5)
+            ->withQueryString();
+        return view('frontend.friend', compact('friends'));
+    }
+
+    public function friendAdd()
+    {
+        return view('frontend.friend-add');
+    }
+
+    public function friendAddStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required'
+        ]);
+        
+        $authUser = auth()->user();
+        $addedFriend = Friend::where('phone', $request->phone)
+            ->where('user_id', $authUser->id)
+            ->first();
+        if (!is_null($addedFriend)) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'You are already added',
+            ]);
+        }
+
+        $friend = new Friend();
+        $friend->user_id = $authUser->id;
+        $friend->name = $request->name;
+        $friend->phone = $request->phone;
+        $friend->save();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'success',
+        ]);
     }
 
     public function updatePassword()
@@ -53,8 +98,12 @@ class PageController extends Controller
             $sourceable_id = $user->id;
             $sourceable_type = User::class;
             $web_link = route('profile');
+            $deep_link = [
+                'target' => 'profile',
+                'parameter' => null,
+            ];
 
-            Notification::send([$user], new GeneralNotification($title, $message, $sourceable_id, $sourceable_type, $web_link));
+            Notification::send([$user], new GeneralNotification($title, $message, $sourceable_id, $sourceable_type, $web_link, $deep_link));
             // Store Notification end
 
             return redirect()
@@ -166,8 +215,14 @@ class PageController extends Controller
             $sourceable_id = $from_account_transaction->id;
             $sourceable_type = User::class;
             $web_link = route('transaction.detail', $from_account_transaction->trx_no);
+            $deep_link = [
+                'target' => 'transaction_detail',
+                'parameter' => [
+                    'trx_no' => $from_account_transaction->trx_no,
+                ],
+            ];
 
-            Notification::send([$authUser], new GeneralNotification($title, $message, $sourceable_id, $sourceable_type, $web_link));
+            Notification::send([$authUser], new GeneralNotification($title, $message, $sourceable_id, $sourceable_type, $web_link, $deep_link));
 
             // To Noti
             $title = 'E-money Received!';
@@ -175,10 +230,15 @@ class PageController extends Controller
             $sourceable_id = $to_account_transaction->id;
             $sourceable_type = Transaction::class;
             $web_link = route('transaction.detail', $to_account_transaction->trx_no);
+            $deep_link = [
+                'target' => 'transaction_detail',
+                'parameter' => [
+                    'trx_no' => $to_account_transaction->trx_no,
+                ],
+            ];
 
-            Notification::send([$toUser], new GeneralNotification($title, $message, $sourceable_id, $sourceable_type, $web_link));
+            Notification::send([$toUser], new GeneralNotification($title, $message, $sourceable_id, $sourceable_type, $web_link, $deep_link));
             // Store Notification end
-
 
             DB::commit();
             return redirect()
@@ -277,7 +337,7 @@ class PageController extends Controller
         return response()->json([
             'status' => 'fail',
             'message' => $stupid,
-            // 'data' => 'not found account',
+            'data' => 'not found account',
         ]);
     }
 

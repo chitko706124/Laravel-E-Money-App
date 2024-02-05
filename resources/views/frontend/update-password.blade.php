@@ -64,6 +64,11 @@
 @endsection
 
 @section('js')
+    <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
+
+    {!! JsValidator::formRequest('App\Http\Requests\UpdatePassword') !!}
+
+
     <script type="text/javascript">
         $(document).ready(function() {
 

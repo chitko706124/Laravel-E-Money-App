@@ -20,7 +20,7 @@
                             @csrf
 
                             <div class=" form-group mb-3">
-                                <label for="" class=" form-label">Phone</label>
+                                <label for="" class=" form-label">Phone or Email</label>
                                 <input type="text"
                                     class="form-control
                                 @error('phone')
